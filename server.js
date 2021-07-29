@@ -22,13 +22,23 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { use
 
 app.get("/api/workouts", (req, res) => {
     db.Workout.find({})
-    .then(workout => {
-        res.json(workout);
+    .then(workouts => {
+        res.json(workouts);
     })
     .catch(err => {
         res.json(err);
     });
 });
+
+app.get("/api/workouts/range", (req, res) => {
+    db.Workout.find({})
+    .then(workouts => {
+        res.json(workouts);
+    })
+    .catch(err => {
+        res.json(err);
+    });
+})
 
 app.put("/api/workouts/:id", ({body}, res) => {
     db.Workout.create(body)
