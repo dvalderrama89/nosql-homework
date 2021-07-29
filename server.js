@@ -21,8 +21,20 @@ app.use(express.static(path.join(__dirname, 'public'),{index:false,extensions:['
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { useNewUrlParser: true });
 
 app.get("/api/workouts", (req, res) => {
-    db.Workout.find({})
+    db.Workout.aggregate([
+    {
+        "$addFields": {
+            "totalDuration": {
+                "$sum": "$exercises.duration"
+            }
+        }
+    }
+    ], function(err, results) {
+        if (err) throw err;
+        console.log(results);
+    })
     .then(workouts => {
+        console.log(workouts);
         res.json(workouts);
     })
     .catch(err => {
@@ -31,7 +43,18 @@ app.get("/api/workouts", (req, res) => {
 });
 
 app.get("/api/workouts/range", (req, res) => {
-    db.Workout.find({})
+    db.Workout.aggregate([        
+    {
+        "$addFields": {
+            "totalDuration": {
+                "$sum": "$exercises.duration"
+            }
+        }
+    }
+    ], function(err, results) {
+        if (err) throw err;
+        console.log(results);
+    })
     .then(workouts => {
         res.json(workouts);
     })
