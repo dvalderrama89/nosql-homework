@@ -18,7 +18,13 @@ app.use(express.json());
 // Makes it so that the html file type doesnt have to be specified in hrefs
 app.use(express.static(path.join(__dirname, 'public'),{index:false,extensions:['html']}));
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", 
+{ 
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+});
 
 app.get("/api/workouts", (req, res) => {
     db.Workout.aggregate([
