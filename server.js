@@ -66,20 +66,17 @@ app.get("/api/workouts/range", (req, res) => {
 app.put("/api/workouts/:id", (req, res) => {
     db.Workout.updateOne({'_id': req.params.id}, {exercises: [req.body]})
     .then(workout => {
-        console.log('put');
-        console.log(req.body);
-        console.log(workout);
         res.json(workout);
     })
     .catch(({ message }) => {
-        console.log(message);
+        console.log('err: ' + message);
     });
 });
 
 app.post("/api/workouts/", ({body}, res) => {
     db.Workout.create(body)
     .then(workout => {
-        console.log(workout);
+        res.json(workout);
     })
     .catch(({ message }) => {
         console.log(message);

@@ -19,15 +19,12 @@ let shouldNavigateAway = false;
 
 async function initExercise() {
   let workout;
-
   if (location.search.split("=")[1] === undefined) {
-    workout = await API.createWorkout()
-    console.log(workout)
+    workout = await API.createWorkout();
   }
   if (workout) {
     location.search = "?id=" + workout._id;
   }
-
 }
 
 initExercise();
@@ -122,7 +119,7 @@ async function handleFormSubmit(event) {
 function handleToastAnimationEnd() {
   toast.removeAttribute("class");
   if (shouldNavigateAway) {
-    location.href = "/";
+    location.href = "/index";
   }
 }
 
