@@ -19,19 +19,5 @@ const WorkoutSchema = new Schema({
 });
 
 const Workout = mongoose.model("Workout", WorkoutSchema);
-// Workout.aggregate([
-//     {"$unwind": "$exercises"},
-   
-//     {
-//         "$addFields": {
-//             "totalDuration": {
-//                 "$sum": "$exercises.duration"
-//             }
-//         }
-//     }
-// ], function(err, results) {
-//     if (err) throw err;
-//     console.log(results);
-// });
 
 module.exports = Workout;

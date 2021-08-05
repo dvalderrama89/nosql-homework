@@ -41,10 +41,8 @@ app.get("/api/workouts", (req, res) => {
     }
     ], function(err, results) {
         if (err) throw err;
-        console.log(results);
     })
     .then(workouts => {
-        //console.log(workouts);
         res.json(workouts);
     })
     .catch(err => {
@@ -63,7 +61,6 @@ app.get("/api/workouts/range", (req, res) => {
     }
     ], function(err, results) {
         if (err) throw err;
-        console.log(results);
     })
     .then(workouts => {
         res.json(workouts);
@@ -79,7 +76,7 @@ app.put("/api/workouts/:id", (req, res) => {
         res.json(workout);
     })
     .catch(({ message }) => {
-        console.log('err: ' + message);
+        console.log(message);
     });
 });
 
