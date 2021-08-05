@@ -26,6 +26,10 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout",
     useFindAndModify: false
 });
 
+app.get("/", (req, res) => {
+    res.redirect("/index")
+});
+
 app.get("/api/workouts", (req, res) => {
     db.Workout.aggregate([
     {
